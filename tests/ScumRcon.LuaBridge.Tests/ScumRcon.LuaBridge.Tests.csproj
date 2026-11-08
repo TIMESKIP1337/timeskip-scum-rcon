@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Runs the real Lua file bridge (mods/ScumRcon/Scripts/modules/rcon_bridge.lua) inside a small Lua
+    interpreter, with the real C# FileGameBridge on the other side. No game is needed.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="MoonSharp" Version="2.0.0" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ScumRcon.Server\ScumRcon.Server.csproj" />
+    <!-- the real mod files, copied next to the tests -->
+    <None Include="..\..\mods\ScumRcon\Scripts\main.lua" Link="mod\main.lua" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\mods\ScumRcon\Scripts\modules\*.lua" Link="mod\modules\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\mods\ScumRcon\Scripts\modules\rcon_bridge.lua" Link="rcon_bridge.lua" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

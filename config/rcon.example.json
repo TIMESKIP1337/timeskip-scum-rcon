@@ -1,0 +1,37 @@
+{
+    "listenAddress": "127.0.0.1",
+    "port": 28015,
+    "ipAllowlist": [ "127.0.0.1", "::1" ],
+    "maxConnections": 10,
+    "authTimeoutSeconds": 15,
+    "idleTimeoutSeconds": 300,
+    "maxFailedAuth": 5,
+    "failureWindowMinutes": 10,
+    "blockMinutes": 15,
+    "maxCommandsPerSecond": 5,
+    "maxCommandLength": 512,
+    "users": [
+        {
+            "name": "admin",
+            "passwordHash": "CREATE-WITH: ScumRcon.Server --hash-password",
+            "role": "Admin"
+        }
+    ],
+    "commandRoles": {
+        "help": "Viewer",
+        "ListPlayers": "Viewer",
+        "players": "Viewer",
+        "say": "Moderator",
+        "saypm": "Moderator"
+    },
+    "bridge": {
+        "mode": "File",
+        "host": "127.0.0.1",
+        "port": 28016,
+        "secret": "ONLY-FOR-TCP-MODE: a long random value, identical in the game plugin",
+        "commandsDirectory": "C:\\SCUM-Server\\SCUM\\Binaries\\Win64\\ue4ss\\Mods\\ScumRcon\\bridge\\rcon_commands",
+        "responsesDirectory": "C:\\SCUM-Server\\SCUM\\Binaries\\Win64\\ue4ss\\Mods\\ScumRcon\\bridge\\rcon_responses",
+        "timeoutSeconds": 15
+    },
+    "auditLogPath": "logs/audit.jsonl"
+}

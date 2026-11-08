@@ -1,0 +1,17 @@
+# Build output
+bin/
+obj/
+publish/
+*.user
+.vs/
+.idea/
+
+# Never commit real configuration, logs, keys or data
+config/rcon.json
+config/*.local.json
+logs/
+data/
+*.key
+*.secret
+*.pfx
+.env

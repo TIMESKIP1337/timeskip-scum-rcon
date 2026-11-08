@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - run: dotnet test ScumRcon.sln --configuration Release
+      - name: Test the UE4SS installer script (fake zips, no network)
+        shell: powershell
+        run: .\tests\scripts\Test-Install-Ue4ss.ps1
